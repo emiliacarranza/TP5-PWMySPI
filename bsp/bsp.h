@@ -38,5 +38,6 @@ void bsp_init();
  * @brief Delay de x ms
  */
 void bsp_delayMs(uint16_t x);
+uint16_t bsp_convertir(void);
 
 #endif

@@ -16,9 +16,41 @@ int main(void) {
 	bsp_init();
 	int brillo = 0;
 	int flag = 0;
+	uint8_t i;
 
 	while (1) {
-		bsp_delayMs(100);
+		uint16_t valor_pot, porcentaje;
+
+
+		valor_pot = bsp_convertir();
+
+	    porcentaje = (uint16_t) valor_pot*100.0/4095;
+
+	    for( i=0;i<8;i++)
+	    	led_off(i);
+
+	    if (porcentaje > 10)
+	    				led_on(0);
+	    if (porcentaje > 20)
+	    				led_on(1);
+	    if (porcentaje > 30)
+	    				led_on(2);
+	    if (porcentaje > 40)
+	    				led_on(3);
+	    if (porcentaje > 50)
+	    				led_on(4);
+	    if (porcentaje > 60)
+	    				led_on(5);
+	    if (porcentaje > 70)
+	    				led_on(6);
+	    if (porcentaje > 90)
+				led_on(7);
+
+
+
+
+	/*	TP 5
+	    bsp_delayMs(100);
 
 		led_setBright(0,brillo);
 		led_setBright(1,brillo);
@@ -33,7 +65,9 @@ int main(void) {
 		if(flag)
 			brillo++;
 		else
-			brillo--;
+			brillo--; */
+
+
 	}
 }
 
