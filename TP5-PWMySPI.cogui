@@ -14,13 +14,23 @@
 <folder appearance="1" expanded="2">
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
+<part id="1"/>
+<part id="2"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="D:/Sistemas Embebidos/TP5-PWMySPI/main.c" title="main.c" tooltip="D:/Sistemas Embebidos/TP5-PWMySPI/main.c" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="D:/Sist-Emb/TP5-PWMySPI/main.c" title="main.c" tooltip="D:/Sist-Emb/TP5-PWMySPI/main.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/TP5-PWMySPI/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="860"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2090" selectionTopPixel="1860"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="bsp.c" partName="bsp.c" path="D:/Sist-Emb/TP5-PWMySPI/bsp/bsp.c" title="bsp.c" tooltip="D:/Sist-Emb/TP5-PWMySPI/bsp/bsp.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/TP5-PWMySPI/bsp/bsp.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3401" selectionTopPixel="2188"/>
+</editor>
+<editor id="org.coocox.component.board.ui.editor.BoardBrowserEditor" name="Board" partName="Repository" title="Repository" tooltip="Board" workbook="DefaultEditorWorkbook">
+<input factoryID="org.coocox.component.board.ui.editor.BoardEditorElementFactory">&#x0A;<subPage horizontalPosition="0" selectedItemId="0" subPageIndex="2" verticalPosition="553"/>
+</input>
 </editor>
 </editors>
 <views>
@@ -30,7 +40,7 @@
 </viewState>
 </view>
 <view id="org.coocox.builder.ui.views.ProjectView" partName="Project">
-<viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="1" verticalPosition="0">
+<viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="1" verticalPosition="3">
 <expanded>
 <element path="/TP5-PWMySPI"/>
 <element path="/TP5-PWMySPI/bsp"/>
@@ -38,7 +48,7 @@
 <element path="/TP5-PWMySPI/cmsis_lib/include"/>
 </expanded>
 <selection>
-<element path="/TP5-PWMySPI/main.c"/>
+<element path="/TP5-PWMySPI/cmsis_lib/include/stm32f4xx_usart.h"/>
 </selection>
 </viewState>
 </view>
@@ -111,7 +121,7 @@
 <page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@f63eec" ratio="0.6993939" ratioLeft="577" ratioRight="248" relationship="4" relative="org.eclipse.ui.internal.ViewStack@17509be">
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@f63eec" ratio="0.5845182" ratioLeft="370" ratioRight="263" relationship="4" relative="org.eclipse.ui.internal.ViewStack@17509be">
 <folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
@@ -131,7 +141,7 @@
 </folder>
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.44969696" ratioLeft="371" ratioRight="454" relationship="4" relative="org.coocox.builder.ui.exampleView"/>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@d2b042" ratio="0.36969697" ratioLeft="305" ratioRight="520" relationship="4" relative="org.eclipse.ui.internal.ViewStack@17509be">
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@d2b042" ratio="0.44011143" ratioLeft="158" ratioRight="201" relationship="4" relative="org.eclipse.ui.internal.ViewStack@17509be">
 <folder activePageID="org.coocox.builder.ui.views.ProjectView" appearance="2" expanded="2">
 <page content="org.coocox.builder.ui.views.ProjectView" label="Project"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
@@ -243,9 +253,157 @@
 <navigationHistory>
 <editors>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/TP5-PWMySPI/main.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/TP5-PWMySPI/bsp/bsp.c"/>
 </editors>
+<item historyLabel="bsp.c" index="1">
+<position info="not_deleted" x="12086" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="679" y="0"/>
+</item>
+<item historyLabel="bsp.c" index="1">
+<position info="not_deleted" x="12086" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="679" y="0"/>
+</item>
+<item historyLabel="bsp.c" index="1">
+<position info="not_deleted" x="2206" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="679" y="0"/>
+</item>
+<item historyLabel="bsp.c" index="1">
+<position info="not_deleted" x="2206" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="679" y="0"/>
+</item>
+<item historyLabel="bsp.c" index="1">
+<position/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="679" y="0"/>
+</item>
+<item historyLabel="bsp.c" index="1">
+<position/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="679" y="0"/>
+</item>
+<item historyLabel="bsp.c" index="1">
+<position/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="679" y="0"/>
+</item>
+<item historyLabel="bsp.c" index="1">
+<position info="not_deleted" x="1368" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="679" y="0"/>
+</item>
+<item historyLabel="bsp.c" index="1">
+<position info="not_deleted" x="1274" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="511" y="0"/>
+</item>
+<item historyLabel="bsp.c" index="1">
+<position info="not_deleted" x="1274" y="0"/>
+</item>
+<item historyLabel="bsp.c" index="1">
+<position info="not_deleted" x="3218" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="2339" y="0"/>
+</item>
+<item historyLabel="bsp.c" index="1">
+<position info="not_deleted" x="1368" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="1847" y="0"/>
+</item>
+<item historyLabel="bsp.c" index="1">
+<position info="not_deleted" x="3181" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="1847" y="0"/>
+</item>
+<item historyLabel="bsp.c" index="1">
+<position info="not_deleted" x="3199" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="1882" y="34"/>
+</item>
+<item historyLabel="bsp.c" index="1">
+<position info="not_deleted" x="868" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="359" y="0"/>
+</item>
+<item historyLabel="bsp.c" index="1">
+<position info="not_deleted" x="868" y="0"/>
+</item>
+<item historyLabel="bsp.c" index="1">
+<position info="not_deleted" x="4969" y="0"/>
+</item>
+<item historyLabel="bsp.c" index="1">
+<position info="not_deleted" x="3343" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="2029" y="0"/>
+</item>
+<item historyLabel="bsp.c" index="1">
+<position info="not_deleted" x="3401" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="2016" y="71"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="2339" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="583" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="2016" y="71"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="61" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="2323" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="2220" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="2204" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="2157" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="2213" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="2238" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="2244" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="2323" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="2278" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="2304" y="0"/>
+</item>
 <item active="true" historyLabel="main.c" index="0">
-<position info="not_deleted" x="0" y="0"/>
+<position info="not_deleted" x="2080" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -254,16 +412,12 @@
 <actionBarAdvisor/>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="TP5-PWMySPI/main.c">
-<persistable path="/TP5-PWMySPI/main.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="startup_stm32f4xx.c" tooltip="TP5-PWMySPI/cmsis_boot/startup/startup_stm32f4xx.c">
-<persistable path="/TP5-PWMySPI/cmsis_boot/startup/startup_stm32f4xx.c"/>
-</file>
 <file factoryID="org.coocox.component.board.ui.editor.BoardEditorElementFactory" id="org.coocox.component.board.ui.editor.BoardBrowserEditor" name="Board" tooltip="Board">
-<persistable>
-<subPage/>
+<persistable>&#x0A;<subPage/>
 </persistable>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="bsp.c" tooltip="TP5-PWMySPI/bsp/bsp.c">
+<persistable path="/TP5-PWMySPI/bsp/bsp.c"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="testSE/main.c">
 <persistable path="/testSE/main.c"/>
@@ -297,6 +451,9 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="mcuconf.h" tooltip="SSE/mcuconf.h">
 <persistable path="/SSE/mcuconf.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="hal_lld.c" tooltip="SSE/os/hal/platforms/STM32F4xx/hal_lld.c">
+<persistable path="/SSE/os/hal/platforms/STM32F4xx/hal_lld.c"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="hal_lld.c" tooltip="SSE/os/hal/platforms/STM32F4xx/hal_lld.c">
 <persistable path="/SSE/os/hal/platforms/STM32F4xx/hal_lld.c"/>

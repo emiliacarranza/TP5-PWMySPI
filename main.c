@@ -1,5 +1,8 @@
 #include <stdint.h>
 #include "bsp/bsp.h"
+#include "string.h"
+#define LONG_BUFFER 7
+#define LONG_ENCABEZADO 3
 
 /**
  * @brief Se encarga de prender un led y apagarlo luego de un tiempo
@@ -7,7 +10,21 @@
  * @param led    Numero de led a pulsar
  * @param tiempo Numero de ciclos del delay entre prendido y apagado
  */
+struct st_trama{
+	uint8_t encab[LONG_ENCABEZADO];
+	uint8_t n_led;
+	uint8_t dos_p;
+	uint8_t estado;
+	uint8_t fin_trama;
+};
+
+union rx_trama{
+	struct st_trama trama;
+	uint8_t buffer[7];
+}rx;
+
 void ledPulso(uint8_t led, uint32_t tiempo);
+void analizar_trama(void);
 
 /**
  * @brief Aplicacion principal
@@ -92,9 +109,36 @@ void APP_ISR_1ms(void){
 	}
 }
 
+void APP_ISR_RX(char data){
+int i,resultado;
+for (i=0; i<LONG_BUFFER-1 ; i++)
+	rx.buffer[i] = rx.buffer[i+1];
+rx.buffer[LONG_BUFFER-1] = data;
+if (rx.trama.fin_trama == 0xD){
+	resultado = analizar_trama(rx);
+	if (resultado)
+		prenderled();//seguir
+}
+}
+
+int analizar_trama(rx_trama rx){
+int i,encontro=0;
+string cab[3];
+for (i=0;i<3;i++)
+	cab[i]=rx.trama.encab[i];
+cab[3]=null;
+if (!strcmp("LED",cab)){
+	        nro_led = rx.buffer[4];
+			estado= rx.buffer[6];
+			return 1;
+}
+return 0;
+}
 
 void ledPulso(uint8_t led, uint32_t tiempo){
 	led_on(led);
 	Delay(tiempo);
 	led_off(led);
 }
+
+

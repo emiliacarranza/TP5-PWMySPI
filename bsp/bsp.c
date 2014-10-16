@@ -1,4 +1,4 @@
-#include <stdint.h>
+#include "stdint.h"
 #include "stm32f4xx.h"			// Header del micro
 #include "stm32f4xx_gpio.h"		// Perifericos de E/S
 #include "stm32f4xx_rcc.h"		// Para configurar el (Reset and clock controller)
@@ -8,6 +8,7 @@
 #include "misc.h"				// Vectores de interrupciones (NVIC)
 #include "bsp.h"
 #include "stm32f4xx_adc.h"
+#include "stm32f4xx_usart.h"
 
 /*#define LED_V GPIO_Pin_12
 #define LED_N GPIO_Pin_13
@@ -24,6 +25,7 @@
 #define LED_7 GPIO_Pin_10
 #define LED_8 GPIO_Pin_11
 
+
 /* Puertos de los leds disponibles */
 // tp 5 GPIO_TypeDef* leds_port[] = { GPIOD, GPIOD, GPIOD, GPIOD };
 GPIO_TypeDef* leds_port[] = { GPIOD, GPIOD, GPIOD, GPIOD ,GPIOD, GPIOD, GPIOD, GPIOD};
@@ -35,8 +37,11 @@ const uint16_t leds[] = { LED_1, LED_2, LED_3, LED_4, LED_5, LED_6, LED_7, LED_8
 uint32_t* const leds_pwm[] = { &TIM4->CCR1, &TIM4->CCR3,
 		&TIM4->CCR2, &TIM4->CCR4 };
 
+
 extern void APP_ISR_sw(void);
 extern void APP_ISR_1ms(void);
+extern void APP_ISR_RX(char);
+
 
 volatile uint16_t bsp_contMS = 0;
 
@@ -115,10 +120,26 @@ void TIM2_IRQHandler(void) {
 	}
 }
 
+void USART3_IRQHandler(void) {
+	// modif 16-10-14
+	char data;
+	        if (USART_GetFlagStatus(USART3, USART_FLAG_RXNE) != RESET) {
+	                USART_ClearITPendingBit(USART3, USART_IT_RXNE);
+	                data = USART_ReceiveData(USART3);
+	                //USART_SendData(USART3, data);
+	                APP_ISR_RX(data);
+	        }
+}
+
+
 void bsp_led_init();
 void bsp_sw_init();
 void bsp_timer_config();
 void bsp_ADC_config();
+void bsp_usart_config();
+void USART3_IRQHandler();
+//void bsp_usart_rx_config(void);
+
 
 void bsp_init() {
 	bsp_led_init();
@@ -127,6 +148,7 @@ void bsp_init() {
 	//bsp_sw_init();
 	//bsp_timer_config();
 	bsp_ADC_config();
+	bsp_usart_config();
 }
 
 /**
@@ -318,4 +340,91 @@ ADC_Cmd(ADC1, ENABLE);
 
 
 }
+
+/* 16-10-14
+    void bsp_usart_rx_config(void){
+
+
+	NVIC_InitTypeDef NVIC_InitStructure;
+
+	// Enable the USART RX Interrupt
+	USART_ITConfig(USART3, USART_IT_RXNE, ENABLE);
+	NVIC_InitStructure.NVIC_IRQChannel = USART3_IRQn;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+	NVIC_Init(&NVIC_InitStructure);
+}*/
+
+/*
+ * 10-10-14
+ void USART3_IRQHandler(void) {
+	char data;
+	        if (USART_GetFlagStatus(USART3, USART_FLAG_RXNE) != RESET) {
+	                USART_ClearITPendingBit(USART3, USART_IT_RXNE);
+
+	                data = USART_ReceiveData(USART3);
+	                USART_SendData(USART3, data);
+	        }
+}
+*/
+
+
+
+
+void bsp_usart_config(void){
+USART_InitTypeDef USART_InitStructure;
+GPIO_InitTypeDef GPIO_InitStructure;
+NVIC_InitTypeDef NVIC_InitStructure;
+
+   // Habilito Clocks
+RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
+RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART3, ENABLE);
+
+   // Configuro Pin TX
+GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
+GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
+GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8;
+GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+GPIO_Init(GPIOD, &GPIO_InitStructure);
+
+GPIO_PinAFConfig(GPIOD, GPIO_PinSource8, GPIO_AF_USART3);
+
+   //  Configuro Pin RX
+GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
+GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9;
+GPIO_Init(GPIOD, &GPIO_InitStructure);
+
+GPIO_PinAFConfig(GPIOD, GPIO_PinSource9, GPIO_AF_USART3);
+
+	//Configuro UART
+USART_InitStructure.USART_BaudRate = 115200;
+USART_InitStructure.USART_WordLength = USART_WordLength_8b;
+USART_InitStructure.USART_StopBits = USART_StopBits_1;
+USART_InitStructure.USART_Parity = USART_Parity_No;
+USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
+USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
+
+    // Inicializo la USART
+USART_Init(USART3, &USART_InitStructure);
+
+    // Habilito la Usart
+USART_Cmd(USART3, ENABLE);
+
+    // Habilito la Interrupcion por RX
+
+		// USART_ITConfig(USART3, USART_IT_RXNE, ENABLE);
+
+
+		// Funciones a utilizar. 10-10-14
+/*	void USART_SendData(USART_TypeDef* USARTx, uint16_t Data);
+	uint16_t USART_ReceiveData(USART_TypeDef* USARTx);
+	FlagStatus USART_GetFlagStatus(USART_TypeDef* USARTx, uint16_t USART_FLAG)
+	FlagStatus USART_GetFlagStatus(USART_TypeDef* USARTx, uint16_t USART_FLAG)*/
+
+}
+
+
+
 
