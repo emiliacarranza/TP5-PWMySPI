@@ -21,10 +21,11 @@ struct st_trama{
 union rx_trama{
 	struct st_trama trama;
 	uint8_t buffer[7];
-}rx;
+} rx;
 
 void ledPulso(uint8_t led, uint32_t tiempo);
-void analizar_trama(void);
+
+int analizar_trama(rx_trama rx);
 
 /**
  * @brief Aplicacion principal
@@ -117,7 +118,7 @@ rx.buffer[LONG_BUFFER-1] = data;
 if (rx.trama.fin_trama == 0xD){
 	resultado = analizar_trama(rx);
 	if (resultado)
-		prenderled();//seguir
+		led_on(rx.buffer);//seguir
 }
 }
 
